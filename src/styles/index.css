@@ -1,0 +1,251 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --color-bg: #0b0d10;
+  --color-surface: #111419;
+  --color-raised: #171a20;
+  --color-border: #242932;
+  --color-border-strong: #303640;
+  --color-text: #f5f7fa;
+  --color-text-secondary: #9ca3af;
+  --color-muted: #727b88;
+  --color-accent: #7892ff;
+  --color-accent-hover: #8ba1ff;
+  --color-success: #39b982;
+  --color-warning: #e6a23c;
+  --color-error: #e45b68;
+  --color-focus-ring: rgba(120, 146, 255, 0.42);
+  --color-card-shadow: rgba(0, 0, 0, 0.18);
+  --motion-fast: 140ms;
+  --motion-normal: 190ms;
+  --motion-ease: cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+
+html.light {
+  color-scheme: light;
+  --color-bg: #f7f8fa;
+  --color-surface: #ffffff;
+  --color-raised: #f1f3f6;
+  --color-border: #e3e6eb;
+  --color-border-strong: #cbd2dc;
+  --color-text: #161b24;
+  --color-text-secondary: #586273;
+  --color-muted: #778295;
+  --color-accent: #4568e8;
+  --color-accent-hover: #3458d4;
+  --color-success: #11875d;
+  --color-warning: #a9650c;
+  --color-error: #c43e4b;
+  --color-focus-ring: rgba(69, 104, 232, 0.24);
+  --color-card-shadow: rgba(20, 32, 54, 0.06);
+}
+
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  background: var(--color-bg);
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: Inter, Geist, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  isolation: isolate;
+}
+
+button,
+[role="button"],
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+::placeholder {
+  opacity: 1;
+}
+
+/* A quieter, more editorial backdrop; color remains almost entirely in the surfaces. */
+.ic-landing {
+  background-image: radial-gradient(ellipse 46rem 25rem at 76% 4%, rgba(120, 146, 255, 0.075), transparent 74%);
+}
+
+.ic-auth-shell {
+  background-image: radial-gradient(ellipse 34rem 24rem at 50% 0%, rgba(120, 146, 255, 0.075), transparent 76%);
+}
+
+.ic-workspace-shell {
+  background: var(--color-bg);
+}
+
+.ic-workspace-content {
+  background-image: radial-gradient(ellipse 54rem 32rem at 50% 0%, rgba(120, 146, 255, 0.035), transparent 80%);
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
+.ic-workspace-topbar {
+  background: color-mix(in srgb, var(--color-bg) 88%, transparent);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+/* Shared interaction language across cards, menus and form controls. */
+button,
+input,
+textarea,
+select,
+a,
+[role="button"] {
+  transition-timing-function: var(--motion-ease);
+}
+
+input,
+textarea,
+select {
+  accent-color: var(--color-accent);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+  cursor: not-allowed;
+}
+
+button[class~="bg-intel-accent"]:not(:disabled) {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+button[class~="bg-intel-accent"]:not(:disabled):hover {
+  box-shadow: 0 4px 12px rgba(67, 94, 210, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+main [class*="cursor-pointer"][class*="rounded-lg"][class*="border"] {
+  transition-property: border-color, background-color, box-shadow, transform;
+  transition-duration: var(--motion-normal);
+  transition-timing-function: var(--motion-ease);
+}
+
+main [class*="cursor-pointer"][class*="rounded-lg"][class*="border"]:hover {
+  box-shadow: 0 8px 22px var(--color-card-shadow);
+}
+
+/* Consistent, low-contrast borders in both themes. */
+[class*="border-intel-border-strong"] {
+  border-color: var(--color-border-strong);
+}
+
+/* Premium skeleton shimmer instead of aggressive pulsing. */
+.ic-skeleton {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-raised) 15%,
+    color-mix(in srgb, var(--color-border) 64%, var(--color-raised)) 36%,
+    var(--color-raised) 58%
+  );
+  background-size: 220% 100%;
+  animation: ic-skeleton-shimmer 1.55s ease-in-out infinite;
+}
+
+@keyframes ic-skeleton-shimmer {
+  0% { background-position: 110% 0; }
+  100% { background-position: -110% 0; }
+}
+
+/* Custom scrollbars: present when useful, quiet when idle. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-strong);
+  background-clip: padding-box;
+}
+
+/* Code should read like code, not ordinary body text. */
+code,
+pre,
+kbd,
+samp {
+  font-family: "JetBrains Mono", "Fira Code", Menlo, Monaco, Consolas, monospace;
+  font-variant-ligatures: contextual;
+}
+
+pre {
+  tab-size: 2;
+}
+
+/* Visible keyboard focus, including controls custom-styled with Tailwind. */
+*:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px var(--color-focus-ring);
+}
+
+::selection {
+  background-color: rgba(120, 146, 255, 0.25);
+  color: inherit;
+}
+
+/* Keep the experience usable on narrow screens and with reduced motion. */
+@media (max-width: 640px) {
+  .ic-landing {
+    background-image: radial-gradient(ellipse 25rem 20rem at 50% 0%, rgba(120, 146, 255, 0.065), transparent 78%);
+  }
+
+  .ic-workspace-content {
+    scrollbar-gutter: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
